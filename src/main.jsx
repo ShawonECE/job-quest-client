@@ -7,6 +7,11 @@ import Error from './components/Error.jsx';
 import Home from './components/Home.jsx';
 import { HelmetProvider } from 'react-helmet-async';
 import AuthProvider from './components/AuthProvider.jsx';
+import AllJobs from './components/AllJobs';
+import AppliedJobs from './components/AppliedJobs';
+import AddJob from './components/AddJob';
+import MyJobs from './components/MyJobs';
+import Blogs from './components/Blogs';
 
 
 const router = createBrowserRouter([
@@ -18,6 +23,26 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/all-jobs",
+        element: <AllJobs />,
+      },
+      {
+        path: "/applied-jobs",
+        element: <AppliedJobs />,
+      },
+      {
+        path: "/add-job",
+        element: <AddJob />,
+      },
+      {
+        path: "/my-jobs",
+        element: <MyJobs />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
     ]
   },

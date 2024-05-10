@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from "./AuthProvider";
 import { Tooltip } from 'react-tooltip';
+import logo from '../assets/logo_icon.png';
 import ThemeBtn from "./ThemeBtn";
 
 const NavBar = () => {
@@ -12,8 +13,16 @@ const NavBar = () => {
         .then(res => console.log(res))
         .catch(error => console.error(error));
     };
+    const handleActiveNavLink = ({ isActive }) => {
+        return {
+            color: isActive ? "#2C3333" : "",
+            backgroundColor: isActive ? "#00000000" : "",
+            borderRadius: '8px',
+            border: isActive ? '1px solid #2C3333' : ""
+        };
+    };
     return (
-        <div className="navbar bg-base-100 px-0">
+        <div className="navbar bg-base-100 p-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -21,43 +30,26 @@ const NavBar = () => {
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 dark:bg-gray-700 rounded-box w-52">
                         <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/crafts">Crafts</NavLink></li>
-                        <li>
-                            <a>Categories</a>
-                            <ul className="p-2">
-                                <li><NavLink to="crafts-by-category/Clay Sculpture">Clay Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Stone Sculpture">Stone Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Beaded Sculpture">Beaded Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Metal Sculpture">Metal Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Food carving">Food carving</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Natural Material Sculpture">Natural Material Sculpture</NavLink></li>
-                            </ul>
-                        </li>
-                        <li><NavLink to="/add-craft">Add Craft</NavLink></li>
-                        <li><NavLink to="/my-crafts">My Crafts</NavLink></li>
+                        <li><NavLink to="/all-jobs">All Jobs</NavLink></li>
+                        <li><NavLink to="/applied-jobs">Applied Jobs</NavLink></li>
+                        <li><NavLink to="/add-job">Add Job</NavLink></li>
+                        <li><NavLink to="/my-jobs">My Jobs</NavLink></li>
+                        <li><NavLink to="/blogs">Blogs</NavLink></li>
                     </ul>
                 </div>
-                <h2 className="text-xl font-bold">Artifex</h2>
+                <div className="flex gap-2 items-center">
+                    <img className="w-6" src={logo} alt="" />
+                    <h2 className="text-xl font-bold">JobQuest</h2>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1 gap-1">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/crafts">Crafts</NavLink></li>
-                    <li>
-                        <details>
-                            <summary>Categories</summary>
-                            <ul className="p-2 z-10 dark:bg-gray-700">
-                                <li><NavLink to="crafts-by-category/Clay Sculpture">Clay Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Stone Sculpture">Stone Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Beaded Sculpture">Beaded Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Metal Sculpture">Metal Sculpture</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Food carving">Food carving</NavLink></li>
-                                <li><NavLink to="crafts-by-category/Natural Material Sculpture">Natural Material Sculpture</NavLink></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><NavLink to="/add-craft">Add Craft</NavLink></li>
-                    <li><NavLink to="/my-crafts">My Crafts</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/">Home</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/all-jobs">All Jobs</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                    <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
                 </ul>
             </div>
             <div className="navbar-end gap-2">
@@ -79,9 +71,9 @@ const NavBar = () => {
                 }
                 {
                     !loading && (user ?
-                        <button onClick={handleLogOut} className="btn dark:bg-transparent dark:text-white">Log Out</button>
+                        <button onClick={handleLogOut} className="btn bg-[#E7F6F2] dark:bg-transparent dark:text-white">Log Out</button>
                         :
-                        <Link to='/login'><button className="btn dark:bg-transparent dark:text-white">Log In</button></Link>)
+                        <Link to='/login'><button className="btn bg-[#E7F6F2] dark:bg-transparent dark:text-white">Log In</button></Link>)
                 }
                 {
                     loading &&
