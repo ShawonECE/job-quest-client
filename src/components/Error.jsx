@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
@@ -5,6 +6,9 @@ const Error = () => {
     console.error(error);
     return (
         <div className="bg-[#E7F6F2] min-h-screen">
+            <Helmet>
+                <title>Error!</title>
+            </Helmet>
             <div className="flex justify-center items-center">
                 <figure className="max-w-96 mt-20">
                     <img src="https://i.ibb.co/SRh7hpw/error-404-2.jpg" alt="not found" />
