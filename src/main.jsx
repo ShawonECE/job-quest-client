@@ -16,6 +16,7 @@ import Login from './components/Login';
 import axios from 'axios';
 import JobDetail from './components/JobDetail.jsx';
 import Register from './components/Register';
+import Private from './components/Private';
 
 
 const router = createBrowserRouter([
@@ -58,7 +59,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/job/:id",
-        element: <JobDetail />,
+        element: <Private><JobDetail /></Private>,
         loader: ({params}) => axios.get(`http://localhost:3000/jobs/${params.id}`)
       },
     ]

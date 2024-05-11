@@ -75,6 +75,10 @@ const Login = () => {
                             location.state?.from === '/register' &&
                             <h2 className="text-center text-lg font-semibold text-green-400">You are registered. Now please log in</h2>
                         }
+                        {
+                            location.state?.from !== '/register' && location.state?.to &&
+                            <h2 className="text-center text-lg font-semibold text-green-400">Please Login to get all access</h2>
+                        }
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text dark:text-white">Email</span>
