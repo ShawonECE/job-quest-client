@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const JobCard = ({job}) => {
-    const {posted_by, job_title, job_posting_date, deadline, salary_range, number_of_applicants, job_img, job_category} = job;
+    const {_id, posted_by, job_title, job_posting_date, deadline, salary_range, number_of_applicants, job_img, job_category} = job;
+    const navigate = useNavigate();
     return (
         <div className="card card-compact bg-[#E7F6F2] shadow-xl">
             <figure><img src={job_img} alt="job" /></figure>
@@ -18,7 +20,7 @@ const JobCard = ({job}) => {
                 <p>Application deadline: <span className='font-semibold'>{deadline}</span></p>
                 <p>No. of Applicants <span className='font-semibold'>{number_of_applicants}</span></p>
                 <div className="card-actions justify-end">
-                    <button className="btn bg-[#395B64] text-[#E7F6F2]">View Details</button>
+                    <button onClick={() => navigate(`/job/${_id}`)} className="btn bg-[#2C3333] text-[#E7F6F2]">View Details</button>
                 </div>
             </div>
         </div>
