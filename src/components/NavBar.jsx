@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from "./AuthProvider";
 import { Tooltip } from 'react-tooltip';
-import logo from '../assets/logo_icon.png';
+import logo from '../assets/logo_transparent.png';
 import ThemeBtn from "./ThemeBtn";
 
 const NavBar = () => {
@@ -29,16 +29,16 @@ const NavBar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 dark:bg-gray-700 rounded-box w-52">
-                        <li><NavLink to="/">Home</NavLink></li>
-                        <li><NavLink to="/all-jobs">All Jobs</NavLink></li>
-                        <li><NavLink to="/applied-jobs">Applied Jobs</NavLink></li>
-                        <li><NavLink to="/add-job">Add Job</NavLink></li>
-                        <li><NavLink to="/my-jobs">My Jobs</NavLink></li>
-                        <li><NavLink to="/blogs">Blogs</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/">Home</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/all-jobs">All Jobs</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                        <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
                     </ul>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <img className="w-6" src={logo} alt="" />
+                    <img className="w-5" src={logo} alt="" />
                     <h2 className="text-xl font-bold">JobQuest</h2>
                 </div>
             </div>
@@ -73,7 +73,7 @@ const NavBar = () => {
                     !loading && (user ?
                         <button onClick={handleLogOut} className="btn bg-[#E7F6F2] dark:bg-transparent dark:text-white">Log Out</button>
                         :
-                        <Link to='/login'><button className="btn bg-[#E7F6F2] dark:bg-transparent dark:text-white">Log In</button></Link>)
+                        <Link to='/login'><button className="btn bg-[#E7F6F2] text-[#2C3333] dark:bg-transparent dark:text-white">Log In</button></Link>)
                 }
                 {
                     loading &&
