@@ -32,6 +32,7 @@ const router = createBrowserRouter([
       {
         path: "/all-jobs",
         element: <AllJobs />,
+        loader: () => axios.get('http://localhost:3000/jobs')
       },
       {
         path: "/applied-jobs",
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-job",
-        element: <AddJob />,
+        element: <Private><AddJob /></Private>,
       },
       {
         path: "/my-jobs",
