@@ -81,6 +81,7 @@ const MyJobs = () => {
         newData.salary_range = `$${data.Salary_from} - $${data.Salary_to}`;
         delete newData.Salary_from;
         delete newData.Salary_to;
+        newData.number_of_applicants = parseInt(newData.number_of_applicants);
         
         axios.patch(`http://localhost:3000/${jobToBeUpdated._id}`, newData)
         .then(data => {
@@ -98,7 +99,7 @@ const MyJobs = () => {
     };
 
     return (
-        <div className="mt-8">
+        <div className="mt-8 min-h-screen">
             <Helmet>
                 <title>JobQuest | Your Jobs</title>
             </Helmet>
@@ -181,7 +182,7 @@ const MyJobs = () => {
                             <label className="label">
                                 <span className="label-text dark:text-white">No. of Applicants</span>
                             </label>
-                            <input type="text" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("number_of_applicants", { required: 'No. of Applicants is required' })}/>
+                            <input type="number" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("number_of_applicants", { required: 'No. of Applicants is required' })}/>
                             <p className="text-red-500 mt-2">{errors.number_of_applicants?.message}</p>
                         </div>
                         <div className="form-control">
