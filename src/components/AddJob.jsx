@@ -4,39 +4,38 @@ import { AuthContext } from "./AuthProvider";
 import { useForm } from "react-hook-form";
 import swal from 'sweetalert';
 import addImg from '../assets/add.png';
+import moment from 'moment';
+import axios from "axios";
 
 const AddJob = () => {
     const { user } = useContext(AuthContext);
+    const today = moment().format("YYYY-MM-DD");
     const {
         register,
         handleSubmit,
         reset,
-        formState: { errors, isDirty }
+        formState: { errors }
     } = useForm({
         defaultValues: {
             job_category: "",
             number_of_applicants: 0,
-            subcategory_name: "",
         }
     });
     const onSubmit = (data) => {
-        const newData = {...data, userEmail: user.email};
-        fetch(``, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(newData)
-        })
-        .then(res => res.json())
+        const newData = {...data, job_posting_date: today, posted_by: {name: user.displayName, email: user.email}};
+        newData.salary_range = `$${data.Salary_from} - $${data.Salary_to}`;
+        delete newData.Salary_from;
+        delete newData.Salary_to;
+        console.log(newData);
+        axios.post('http://localhost:3000', newData)
         .then(data => {
-            if (data.insertedId) {
+            if (data.data.insertedId) {
                 reset();
                 swal("Added successfully!", {
                     icon: "success",
                 });
             } else {
-                swal("Failed to update!", {
+                swal("Failed to add!", {
                     icon: "warning",
                 });
             }
@@ -123,33 +122,19 @@ const AddJob = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Processing Time</span>
+                                <span className="label-text dark:text-white">Posting Date</span>
                             </label>
-                            <input type="text" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("processing_time", { required: 'Image URL is required' })}/>
-                            <p className="text-red-500 mt-2">{errors.processing_time?.message}</p>
+                            <input type="date" value={today} className="input input-bordered dark:bg-gray-700 dark:text-white" disabled />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Customizable</span>
+                                <span className="label-text dark:text-white">Application Deadline</span>
                             </label>
-                            <select className="select bg-gray-100 dark:bg-gray-700 dark:text-white text-lg font-semibold" {...register("customization", { required: 'Customizable is required' })}>
-                                <option>yes</option>
-                                <option>no</option>
-                            </select>
-                            <p className="text-red-500 mt-2">{errors.customization?.message}</p>
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text dark:text-white">Stock Status</span>
-                            </label>
-                            <select className="select bg-gray-100 dark:bg-gray-700 dark:text-white text-lg font-semibold" {...register("stock_status", { required: 'Stock Status is required' })}>
-                                <option>In stock</option>
-                                <option>Made to Order</option>
-                            </select>
-                            <p className="text-red-500 mt-2">{errors.stock_status?.message}</p>
+                            <input type="date" min={today} className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("deadline", { required: 'Application Deadline is required' })}/>
+                            <p className="text-red-500 mt-2">{errors.deadline?.message}</p>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-slate-800 text-white" disabled={!isDirty}>Add</button>
+                            <button type="submit" className="btn bg-slate-800 text-white">Add</button>
                         </div>                        
                     </form>
                 </div>
