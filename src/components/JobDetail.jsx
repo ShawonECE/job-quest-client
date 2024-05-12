@@ -1,12 +1,56 @@
 import { Helmet } from "react-helmet-async";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import moment from "moment";
+import swal from "sweetalert";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const JobDetail = () => {
+    const [modalOpen, setModalOpen] = useState(false);
     const job = useLoaderData().data;
     const {user} = useContext(AuthContext);
-    const {posted_by, job_title, deadline, salary_range, number_of_applicants, job_description, job_img, job_category} = job;
+    const {posted_by, job_title, deadline, salary_range, number_of_applicants, job_description, job_img, job_category, _id} = job;
+    const applicationDeadline = moment(deadline);
+    const now = moment();
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors }
+    } = useForm();
+
+    const handleApplyModal = () => {
+        if (now.isAfter(applicationDeadline)) {
+            swal("Deadline is over!", {
+                icon: "warning",
+            });
+        } else {
+            setModalOpen(true);
+        }
+    };
+
+    const onSubmit = (data) => {
+        const newData = {...data, job_title, name: user.displayName, email: user.email, posted_by, salary_range, job_category, job_id: _id};
+        console.log(newData);
+        axios.post('http://localhost:3000/application', newData)
+        .then(data => {
+            if (data.data.insertedId) {
+                setModalOpen(false);
+                reset();
+                swal("Applied successfully!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Application failed!", {
+                    icon: "warning",
+                });
+            }
+        });
+    };
+    
     return (
         <div className="hero min-h-screen bg-[#E7F6F2] rounded-xl mt-8">
             <Helmet>
@@ -23,7 +67,41 @@ const JobDetail = () => {
                     <p>Application deadline: <span className="font-semibold">{deadline}</span></p>
                     <p>Number of applicants: <span className="font-semibold">{number_of_applicants}</span></p>
                     <p>Employer email: <span className="font-semibold">{posted_by.email}</span></p>
-                    <button className="btn bg-[#2C3333] text-[#E7F6F2] mt-5" disabled={user.email === posted_by.email}>Apply Now</button>
+                    <button onClick={handleApplyModal} className="btn bg-[#2C3333] text-[#E7F6F2] mt-5" disabled={user.email === posted_by.email}>Apply Now</button>
+                </div>
+            </div>
+
+            {/* apply modal */}
+            <input type="checkbox" checked={modalOpen} id="my_modal_6" className="modal-toggle" />
+            <div className="modal" role="dialog">
+                <div className="modal-box">
+                    <form method="dialog">
+                        <button onClick={() => setModalOpen(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <form className="card-body" onSubmit={handleSubmit(onSubmit)} noValidate>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input type="text" className="input input-bordered" defaultValue={user.displayName} disabled />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input type="email" className="input input-bordered" defaultValue={user.email} disabled />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text dark:text-white">Resume Link</span>
+                            </label>
+                            <input type="url" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("resume_link", { required: 'Banner Image URL is required' })}/>
+                            <p className="text-red-500 mt-2">{errors.resume_link?.message}</p>
+                        </div>
+                        <div className="form-control mt-6">
+                            <button type="submit" className="btn bg-[#2C3333] text-white">Apply</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

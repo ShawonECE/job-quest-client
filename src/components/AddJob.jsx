@@ -26,7 +26,6 @@ const AddJob = () => {
         newData.salary_range = `$${data.Salary_from} - $${data.Salary_to}`;
         delete newData.Salary_from;
         delete newData.Salary_to;
-        console.log(newData);
         axios.post('http://localhost:3000', newData)
         .then(data => {
             if (data.data.insertedId) {
@@ -134,7 +133,7 @@ const AddJob = () => {
                             <p className="text-red-500 mt-2">{errors.deadline?.message}</p>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-slate-800 text-white">Add</button>
+                            <button type="submit" className="btn bg-[#2C3333] text-white">Add</button>
                         </div>                        
                     </form>
                 </div>
