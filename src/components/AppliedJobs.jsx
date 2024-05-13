@@ -11,7 +11,7 @@ const AppliedJobs = () => {
     const [selectedValue, setSelectedValue] = useState('Filter');
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/applications?email=${user.email}`)
+        axios.get(`http://localhost:3000/applications?email=${user.email}`, { withCredentials: true})
         .then(data => {
             setAppliedJobs(data.data);
             setFiltered(data.data);
