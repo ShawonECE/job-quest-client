@@ -43,7 +43,7 @@ const Register = () => {
             });
     };
     return (
-        <div className="hero min-h-screen bg-[#E7F6F2] rounded-2xl">
+        <div className="hero min-h-screen bg-[#E7F6F2] dark:bg-[#2C3333] rounded-2xl">
             <Helmet>
                 <title>JobQuest | Register</title>
             </Helmet>
@@ -51,8 +51,8 @@ const Register = () => {
                 <div className="text-center lg:text-left">
                     <img src={registerImg} alt="" className="w-full"/>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 dark:bg-gray-800">
-                    <h2 className="text-center text-3xl font-bold mt-5">Register Here</h2>
+                <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 dark:bg-[#222831]">
+                    <h2 className="text-center text-3xl font-bold mt-5 dark:text-[#E7F6F2]">Register Here</h2>
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)} noValidate>
                         <div className="form-control">
                             <label className="label">

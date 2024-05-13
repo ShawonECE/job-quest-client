@@ -44,7 +44,7 @@ const AppliedJobs = () => {
             <Helmet>
                 <title>JobQuest | Your Jobs</title>
             </Helmet>
-            <h1 className="text-center text-3xl font-bold">You have added {appliedJobs.length} jobs</h1> 
+            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have added {appliedJobs.length} jobs</h1> 
             <div className="flex justify-center mt-5 mb-5">
                 <select value={selectedValue} onChange={handleFilter} className="select max-w-xs bg-gray-100 dark:bg-gray-200 text-lg font-semibold">
                     <option disabled>Filter</option>
@@ -55,9 +55,9 @@ const AppliedJobs = () => {
                     <option>Part-Time</option>
                 </select>
             </div>
-            <div className="overflow-x-auto bg-[#E7F6F2] rounded-xl mt-4">
-                <table className="table">
-                    <thead>
+            <div className="overflow-x-auto bg-[#E7F6F2] dark:bg-[#31363F] rounded-xl mt-4">
+                <table className="table dark:text-[#E7F6F2]">
+                    <thead className="dark:text-[#E7F6F2]">
                         <tr>
                             <th>Job Title</th>
                             <th>Category</th>

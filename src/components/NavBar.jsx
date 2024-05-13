@@ -1,31 +1,28 @@
 import { LuUserCircle } from "react-icons/lu";
 import { Link, NavLink } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from "./AuthProvider";
 import { Tooltip } from 'react-tooltip';
 import logo from '../assets/logo_transparent.png';
 import ThemeBtn from "./ThemeBtn";
-// import axios from "axios";
 
 const NavBar = () => {
     const {user, logOutUser, loading} = useContext(AuthContext);
+    const [dark, setDark] = useState(false);
     const handleLogOut = () => {
         logOutUser()
-        // .then(() => {
-        //     axios.post('http://localhost:3000/logout', { withCredentials: true})
-        // })
         .catch(error => console.error(error));
     };
     const handleActiveNavLink = ({ isActive }) => {
         return {
-            color: isActive ? "#2C3333" : "",
+            color: isActive ? (dark ? "#E7F6F2" : "#2C3333") : "",
             backgroundColor: isActive ? "#00000000" : "",
             borderRadius: '8px',
-            border: isActive ? '1px solid #2C3333' : ""
+            border: isActive ? (dark ? "1px solid #E7F6F2" : "1px solid #2C3333") : ""
         };
     };
     return (
-        <div className="navbar bg-base-100 p-0">
+        <div className="navbar bg-base-100 dark:bg-[#2C3333] dark:text-white p-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,7 +53,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end gap-2">
-                <ThemeBtn></ThemeBtn>
+                <ThemeBtn dark={dark} setDark={setDark}></ThemeBtn>
                 {
                     !loading && (user?.photoURL ?
                         <div className="avatar" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName} >

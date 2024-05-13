@@ -5,7 +5,7 @@ const JobCard = ({job}) => {
     const {_id, posted_by, job_title, job_posting_date, deadline, salary_range, number_of_applicants, job_img, job_category} = job;
     const navigate = useNavigate();
     return (
-        <div className="card card-compact bg-[#E7F6F2] shadow-xl">
+        <div className="card card-compact bg-[#E7F6F2] dark:bg-[#2C3333] dark:text-[#E7F6F2] shadow-xl">
             <figure><img src={job_img} alt="job" /></figure>
             <div className="card-body">
                 <h2 className="card-title">

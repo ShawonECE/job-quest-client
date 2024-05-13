@@ -1,9 +1,10 @@
 import { MdOutlineWbSunny } from "react-icons/md";
 import { IoMoonOutline } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import PropTypes from 'prop-types';
 
-const ThemeBtn = () => {
-    const [dark, setDark] = useState(false);
+const ThemeBtn = ({dark, setDark}) => {
+    
     useEffect(() => {
         if (dark) {
             document.documentElement.classList.add('dark');
@@ -18,6 +19,11 @@ const ThemeBtn = () => {
             }
         </div>
     );
+};
+
+ThemeBtn.propTypes = {
+    dark: PropTypes.bool.isRequired,
+    setDark: PropTypes.func.isRequired,
 };
 
 export default ThemeBtn;

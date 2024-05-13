@@ -60,7 +60,7 @@ const Login = () => {
         })
     };
     return (
-        <div className="hero min-h-screen bg-[#E7F6F2] rounded-2xl">
+        <div className="hero min-h-screen bg-[#E7F6F2] dark:bg-[#2C3333] rounded-2xl">
             <Helmet>
                 <title>JobQuest | Log In</title>
             </Helmet>
@@ -68,8 +68,8 @@ const Login = () => {
                 <div className="text-center lg:text-left">
                     <img src={loginImg} alt="" className="w-full"/>
                 </div>
-                <div className="card shrink-0 w-full max-w-sm bg-base-200 shadow-2xl dark:bg-gray-800">
-                    <h2 className="text-center text-3xl font-bold mt-5">Login Here</h2>
+                <div className="card shrink-0 w-full max-w-sm bg-base-200 shadow-2xl dark:bg-[#222831]">
+                    <h2 className="text-center text-3xl font-bold mt-5 dark:text-[#E7F6F2]">Login Here</h2>
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)} noValidate>
                         {
                             location.state?.from === '/register' &&
@@ -110,7 +110,7 @@ const Login = () => {
                             <button type="submit" className="btn bg-[#2C3333] text-[#E7F6F2]" disabled={user}>Log in</button>
                         </div>                        
                     </form>
-                    <button onClick={handleGoogleSignIn} className="btn mx-8 -mt-6 mb-2 bg-[#E7F6F2]" disabled={user}><FaGoogle />Log in with Google</button>
+                    <button onClick={handleGoogleSignIn} className="btn mx-8 -mt-6 mb-2 bg-[#E7F6F2] dark:bg-[#2C3333] dark:text-[#E7F6F2]" disabled={user}><FaGoogle />Log in with Google</button>
                     <p className="text-center mb-8">
                         <Link to='/register' state={location.state?.to} className="label-text-alt link link-hover dark:text-white">Don&apos;t have an account? Register now</Link>
                     </p>

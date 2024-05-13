@@ -32,7 +32,6 @@ const MyJobs = () => {
     } = useForm();
 
     useEffect(() => {
-        // This will update the form's default values whenever jobToBeUpdated changes
         if (jobToBeUpdated) {
             reset({
                 job_title: jobToBeUpdated.job_title,
@@ -42,8 +41,7 @@ const MyJobs = () => {
                 number_of_applicants: jobToBeUpdated.number_of_applicants,
                 Salary_from: jobToBeUpdated.salary_range?.split(" - ")[0].substring(1),
                 Salary_to: jobToBeUpdated.salary_range?.split(" - ")[1].substring(1),
-                deadline: jobToBeUpdated.deadline
-
+                deadline: jobToBeUpdated.deadline,
             });
         }
     }, [jobToBeUpdated, reset]);
@@ -103,10 +101,10 @@ const MyJobs = () => {
             <Helmet>
                 <title>JobQuest | Your Jobs</title>
             </Helmet>
-            <h1 className="text-center text-3xl font-bold">You have added {myJobs.length} jobs</h1>
-            <div className="overflow-x-auto bg-[#E7F6F2] rounded-xl mt-4">
-                <table className="table">
-                    <thead>
+            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have added {myJobs.length} jobs</h1>
+            <div className="overflow-x-auto bg-[#E7F6F2] dark:bg-[#31363F] rounded-xl mt-4">
+                <table className="table dark:text-[#E7F6F2]">
+                    <thead className="dark:text-[#E7F6F2]">
                         <tr>
                             <th>Job Title</th>
                             <th>Posting Date</th>
@@ -125,30 +123,30 @@ const MyJobs = () => {
             {/* update modal */}
             <input type="checkbox" checked={modalOpen} id="my_modal_6" className="modal-toggle" />
             <div className="modal" role="dialog">
-                <div className="modal-box">
+                <div className="modal-box dark:bg-[#222831]">
                     <form method="dialog">
-                        <button onClick={() => setModalOpen(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        <button onClick={() => setModalOpen(false)} className="btn dark:text-[#E7F6F2] btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)} noValidate>
                     <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Job Title</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Job Title</span>
                             </label>
                             <input type="text" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("job_title", { required: 'Job title is required' })} />
                             <p className="text-red-500 mt-2">{errors.job_title?.message}</p>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Banner Image URL</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Banner Image URL</span>
                             </label>
                             <input type="url" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("job_img", { required: 'Banner Image URL is required' })}/>
                             <p className="text-red-500 mt-2">{errors.job_img?.message}</p>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Job Category</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Job Category</span>
                             </label>
-                            <select className="select bg-gray-100 dark:bg-gray-700 dark:text-white text-lg font-semibold" {...register("job_category", { required: 'Subcategory Name is required' })}>
+                            <select className="select bg-gray-100 dark:bg-gray-700 dark:text-[#E7F6F2] text-lg font-semibold" {...register("job_category", { required: 'Subcategory Name is required' })}>
                                 <option>On-Site</option>
                                 <option>Remote</option>
                                 <option>Hybrid</option>
@@ -158,42 +156,42 @@ const MyJobs = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Short Description</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Short Description</span>
                             </label>
                             <textarea type="text" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("job_description", { required: 'Short Description is required' })}/>
                             <p className="text-red-500 mt-2">{errors.job_description?.message}</p>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Salary Range</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Salary Range</span>
                             </label>
                             <div className="grid grid-cols-2 gap-1">
                                 <div className="form-control">
-                                    <input type="text" placeholder="From" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("Salary_from", { required: 'Salary is required' })} />
+                                    <input type="text" placeholder="From" className="input input-bordered dark:bg-gray-700 dark:text-[#E7F6F2]" {...register("Salary_from", { required: 'Salary is required' })} />
                                     <p className="text-red-500 mt-2">{errors.Salary_from?.message}</p>
                                 </div>
                                 <div className="form-control">
-                                    <input type="text" placeholder="To" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("Salary_to", { required: 'Salary is required' })} />
+                                    <input type="text" placeholder="To" className="input input-bordered dark:bg-gray-700 dark:text-[#E7F6F2]" {...register("Salary_to", { required: 'Salary is required' })} />
                                     <p className="text-red-500 mt-2">{errors.Salary_to?.message}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">No. of Applicants</span>
+                                <span className="label-text dark:text-[#E7F6F2]">No. of Applicants</span>
                             </label>
-                            <input type="number" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("number_of_applicants", { required: 'No. of Applicants is required' })}/>
+                            <input type="number" className="input input-bordered dark:bg-gray-700 dark:text-[#E7F6F2]" {...register("number_of_applicants", { required: 'No. of Applicants is required' })}/>
                             <p className="text-red-500 mt-2">{errors.number_of_applicants?.message}</p>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Application Deadline</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Application Deadline</span>
                             </label>
                             <input type="date" min={today} {...register("deadline", { required: 'Application Deadline is required' })}  className="input input-bordered dark:bg-gray-700 dark:text-white" />
                             <p className="text-red-500 mt-2">{errors.deadline?.message}</p>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-[#2C3333] text-white">Update</button>
+                            <button type="submit" className="btn bg-[#2C3333] text-[#E7F6F2]">Update</button>
                         </div>
                     </form>
                 </div>

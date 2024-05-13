@@ -13,7 +13,7 @@ import logo10 from "../assets/logo10.png";
 const FeaturedCompanies = () => {
     return (
         <div className="mt-16">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-10">Featured Companies</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-10 dark:text-[#E7F6F2]">Featured Companies</h1>
 
             <Marquee pauseOnHover={true}>
                 <img className="w-36 rounded-lg ml-10 md:ml-15 lg:ml-20" src={logo1} alt="" />

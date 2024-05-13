@@ -52,7 +52,7 @@ const JobDetail = () => {
     };
     
     return (
-        <div className="hero min-h-screen bg-[#E7F6F2] rounded-xl mt-8">
+        <div className="hero min-h-screen bg-[#E7F6F2] dark:text-[#E7F6F2] dark:bg-[#2C3333] rounded-xl mt-8">
             <Helmet>
                 <title>Job Details</title>
             </Helmet>
@@ -74,26 +74,26 @@ const JobDetail = () => {
             {/* apply modal */}
             <input type="checkbox" checked={modalOpen} id="my_modal_6" className="modal-toggle" />
             <div className="modal" role="dialog">
-                <div className="modal-box">
+                <div className="modal-box dark:bg-[#222831]">
                     <form method="dialog">
                         <button onClick={() => setModalOpen(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <form className="card-body" onSubmit={handleSubmit(onSubmit)} noValidate>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Name</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Name</span>
                             </label>
                             <input type="text" className="input input-bordered" defaultValue={user.displayName} disabled />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Email</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Email</span>
                             </label>
                             <input type="email" className="input input-bordered" defaultValue={user.email} disabled />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text dark:text-white">Resume Link</span>
+                                <span className="label-text dark:text-[#E7F6F2]">Resume Link</span>
                             </label>
                             <input type="url" className="input input-bordered dark:bg-gray-700 dark:text-white" {...register("resume_link", { required: 'Banner Image URL is required' })}/>
                             <p className="text-red-500 mt-2">{errors.resume_link?.message}</p>

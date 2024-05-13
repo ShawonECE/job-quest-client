@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const Blogs = () => {
     return (
-        <div className="mt-8">
+        <div className="mt-8 dark:text-[#E7F6F2]">
             <Helmet>
                 <title>JobQuest | Blogs</title>
             </Helmet>
@@ -23,7 +23,7 @@ const Blogs = () => {
             <h2 className="text-2xl font-bold mt-10">Express.js</h2>
             <h3 className="text-xl font-semibold mt-5">What is Express.js?</h3>
             <p className="mt-2 text-justify">Express.js is a fast, unopinionated, and minimalist web framework for Node.js. It provides essential features for building web applications, APIs, and middleware. Here&apos;s a simple example of an Express route:</p>
-            <div className="bg-[#2C3333] rounded-md text-white mt-4">
+            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4">
                 <pre>
                     <code>
                         {`
@@ -58,7 +58,7 @@ const Blogs = () => {
                 <li><p><span className="font-bold">Type Safety:</span> Built with TypeScript, providing robust type checking.</p></li>
                 <li><p><span className="font-bold">Rich Ecosystem:</span> Offers tools for REST APIs, GraphQL, real-time apps, and more.</p></li>
             </ul>
-            <div className="bg-[#2C3333] rounded-md text-white mt-4">
+            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4">
                 <pre>
                     <code>
                         {`

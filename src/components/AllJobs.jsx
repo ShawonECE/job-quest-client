@@ -36,7 +36,7 @@ const AllJobs = () => {
             <Helmet>
                 <title>JobQuest | All Jobs</title>
             </Helmet>
-            <h1 className="text-center text-3xl font-bold">All Jobs</h1>
+            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">All Jobs</h1>
             <div className="flex justify-center">
                 <div className="join mt-5">
                     <form onSubmit={handleSearch}>
@@ -51,9 +51,9 @@ const AllJobs = () => {
                     <button className="btn" onClick={handleClearSearch}><MdOutlineCancel className="text-lg" /> Clear Search</button>
                 </div>
             }
-            <div className="overflow-x-auto bg-[#E7F6F2] rounded-xl mt-4">
-                <table className="table">
-                    <thead>
+            <div className="overflow-x-auto bg-[#E7F6F2] dark:bg-[#31363F] rounded-xl mt-4">
+                <table className="table dark:text-[#E7F6F2]">
+                    <thead className="dark:text-[#E7F6F2]">
                         <tr>
                             <th>Job Title</th>
                             <th>Posting Date</th>

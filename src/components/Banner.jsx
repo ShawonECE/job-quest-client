@@ -3,7 +3,7 @@ import logo from '../assets/logo_transparent.png';
 const Banner = () => {
     return (
         <div className="hero min-h-screen mt-8" style={{ backgroundImage: 'url(https://i.ibb.co/TLvhjb4/banner.jpg)' }}>
-            <div className="hero-overlay bg-[#2C3333] bg-opacity-60 rounded-xl"></div>
+            <div className="hero-overlay bg-[#2C3333] bg-opacity-60 rounded-xl dark:rounded-none"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-md">
                     <div className="flex justify-center items-center gap-2">
