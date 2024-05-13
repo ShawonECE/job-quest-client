@@ -24,7 +24,7 @@ const JobsInHome = () => {
 
     return (
         <div className="mt-16">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-5">Find suitable jobs by categories</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-8">Find suitable jobs by categories</h1>
 
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>

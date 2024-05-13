@@ -10,6 +10,7 @@ const Banner = () => {
                         <img className="w-10" src={logo} alt="" />
                         <h1 className="mb-5 text-5xl font-bold">JobQuest</h1>
                     </div>
+                    <p className='text-lg font-semibold text-center'>Unlock Your Career Journey with JobQuest: Find Your Dream Job Today!</p>
                     <div className="join mt-5">
                         <input className="input input-bordered join-item" placeholder="Search jobs here" />
                         <button className="btn join-item border-0 bg-[#395B64] text-[#E7F6F2]">Search</button>
