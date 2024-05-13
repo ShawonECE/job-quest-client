@@ -5,12 +5,15 @@ import { AuthContext } from "./AuthProvider";
 import { Tooltip } from 'react-tooltip';
 import logo from '../assets/logo_transparent.png';
 import ThemeBtn from "./ThemeBtn";
+// import axios from "axios";
 
 const NavBar = () => {
     const {user, logOutUser, loading} = useContext(AuthContext);
     const handleLogOut = () => {
         logOutUser()
-        .then(res => console.log(res))
+        // .then(() => {
+        //     axios.post('http://localhost:3000/logout', { withCredentials: true})
+        // })
         .catch(error => console.error(error));
     };
     const handleActiveNavLink = ({ isActive }) => {

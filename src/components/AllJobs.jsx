@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom";
 import AllJobsTableRow from "./AllJobsTableRow";
 import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";

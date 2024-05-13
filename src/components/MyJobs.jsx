@@ -14,7 +14,7 @@ const MyJobs = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [jobToBeUpdated, setJobToBeUpdated] = useState(null);
     useEffect(() => {
-        axios.get(`http://localhost:3000/jobs?email=${user.email}`)
+        axios.get(`http://localhost:3000/my-jobs?email=${user.email}`, { withCredentials: true})
         .then(data => setMyJobs(data.data));
     }, [user]);
 
