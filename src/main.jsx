@@ -17,7 +17,12 @@ import axios from 'axios';
 import JobDetail from './components/JobDetail.jsx';
 import Register from './components/Register';
 import Private from './components/Private';
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -68,10 +73,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-      <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>,
 )
