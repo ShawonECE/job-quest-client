@@ -6,6 +6,9 @@ import MyJobsTableRow from "./MyJobsTableRow";
 import swal from "sweetalert";
 import { useForm } from "react-hook-form";
 import moment from "moment";
+import {
+    useQuery
+} from '@tanstack/react-query';
 
 const MyJobs = () => {
     const { user } = useContext(AuthContext);
@@ -13,10 +16,15 @@ const MyJobs = () => {
     const [myJobs, setMyJobs] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [jobToBeUpdated, setJobToBeUpdated] = useState(null);
+
+    const { isPending, data:jobs } = useQuery({ queryKey: ['my-jobs'], queryFn: async() => {
+        const data = await axios.get(`http://localhost:3000/my-jobs?email=${user.email}`, { withCredentials: true});
+        return data.data;
+    } });
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/my-jobs?email=${user.email}`, { withCredentials: true})
-        .then(data => setMyJobs(data.data));
-    }, [user]);
+        setMyJobs(jobs);
+    }, [jobs]);
 
     const handleUpdateModal = (id) => {
         const job = myJobs.find(job => job._id === id);
@@ -96,12 +104,21 @@ const MyJobs = () => {
         });
     };
 
+    if (isPending) {
+        return (
+            <>
+                <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">Your Jobs</h1>
+                <div className="skeleton h-64"></div>
+            </>
+        )
+    }
+
     return (
         <div className="mt-8 min-h-screen">
             <Helmet>
                 <title>JobQuest | Your Jobs</title>
             </Helmet>
-            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have added {myJobs.length} jobs</h1>
+            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have added {myJobs?.length} jobs</h1>
             <div className="overflow-x-auto bg-[#E7F6F2] dark:bg-[#31363F] rounded-xl mt-4">
                 <table className="table dark:text-[#E7F6F2]">
                     <thead className="dark:text-[#E7F6F2]">
@@ -114,7 +131,7 @@ const MyJobs = () => {
                     </thead>
                     <tbody>
                         {
-                            myJobs.map(job => <MyJobsTableRow key={job._id} handleUpdateModal={handleUpdateModal} handleDelete={handleDelete} job={job}></MyJobsTableRow>)
+                            myJobs?.map(job => <MyJobsTableRow key={job._id} handleUpdateModal={handleUpdateModal} handleDelete={handleDelete} job={job}></MyJobsTableRow>)
                         }
                     </tbody>
                 </table>

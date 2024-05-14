@@ -3,18 +3,22 @@ import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { MdOutlineCancel } from "react-icons/md";
+import {
+    useQuery
+} from '@tanstack/react-query';
 
 const AllJobs = () => {
-    const [jobs, setJobs] = useState([]);
     const [filtered, setFiltered] = useState([]);
     const [searched, setSearched] = useState(false);
+
+    const { isPending, data:jobs } = useQuery({ queryKey: ['jobs'], queryFn: async() => {
+        const data = await axios.get('http://localhost:3000/jobs');
+        return data.data;
+    } });
+
     useEffect(() => {
-        axios.get('http://localhost:3000/jobs')
-        .then(data => {
-            setFiltered(data.data);
-            setJobs(data.data);
-        });
-    }, []);
+        setFiltered(jobs);
+    }, [jobs]);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -30,6 +34,15 @@ const AllJobs = () => {
         setFiltered(jobs);
         setSearched(false);
     };
+
+    if (isPending) {
+        return (
+            <>
+                <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">All Jobs</h1>
+                <div className="skeleton h-64"></div>
+            </>
+        )
+    }
     
     return (
         <div className="mt-8">
@@ -63,7 +76,7 @@ const AllJobs = () => {
                     </thead>
                     <tbody>
                         {
-                            filtered.map(job => <AllJobsTableRow key={job._id} job={job}></AllJobsTableRow>)
+                            filtered?.map(job => <AllJobsTableRow key={job._id} job={job}></AllJobsTableRow>)
                         }
                     </tbody>
                 </table>

@@ -4,20 +4,23 @@ import axios from "axios";
 import AppliedJobsTableRow from "./AppliedJobsTableRow";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import MyPdfDocument from "./MyPdfDocument";
+import {
+    useQuery
+} from '@tanstack/react-query';
 
 const AppliedJobsDoc = () => {
     const { user } = useContext(AuthContext);
-    const [appliedJobs, setAppliedJobs] = useState([]); 
     const [filtered, setFiltered] = useState([]);
     const [selectedValue, setSelectedValue] = useState('Filter');
 
+    const { isPending, data:appliedJobs } = useQuery({ queryKey: ['applied-jobs'], queryFn: async() => {
+        const data = await axios.get(`http://localhost:3000/applications?email=${user.email}`, { withCredentials: true});
+        return data.data;
+    } });
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/applications?email=${user.email}`, { withCredentials: true})
-        .then(data => {
-            setAppliedJobs(data.data);
-            setFiltered(data.data);
-        });
-    }, [user]);
+        setFiltered(appliedJobs);
+    }, [appliedJobs]);
 
     const handleFilter = (e) => {
         const value = e.target.value;
@@ -40,9 +43,18 @@ const AppliedJobsDoc = () => {
         }
     };
 
+    if (isPending) {
+        return (
+            <>
+                <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">Your Applied Jobs</h1>
+                <div className="skeleton h-64"></div>
+            </>
+        )
+    }
+
     return (
         <>
-            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have applied to {appliedJobs.length} jobs</h1>
+            <h1 className="text-center text-3xl font-bold dark:text-[#E7F6F2]">You have applied to {appliedJobs?.length} jobs</h1>
             <div className="flex justify-center mt-5 mb-5">
                 <select value={selectedValue} onChange={handleFilter} className="select max-w-xs bg-gray-100 dark:bg-gray-200 text-lg font-semibold">
                     <option disabled>Filter</option>
@@ -66,7 +78,7 @@ const AppliedJobsDoc = () => {
                         </thead>
                         <tbody>
                             {
-                                filtered.map(job => <AppliedJobsTableRow key={job._id} job={job}></AppliedJobsTableRow>)
+                                filtered?.map(job => <AppliedJobsTableRow key={job._id} job={job}></AppliedJobsTableRow>)
                             }
                         </tbody>
                     </table>
