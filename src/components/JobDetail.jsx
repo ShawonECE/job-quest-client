@@ -43,7 +43,6 @@ const JobDetail = () => {
     const onSubmit = (data) => {
         const {job_title, posted_by, salary_range, job_category, job_id: _id} = job;
         const newData = {...data, job_title, name: user.displayName, email: user.email, posted_by, salary_range, job_category, job_id: _id};
-        console.log(newData);
         axios.post('https://job-quest-server-alpha.vercel.app/application', newData)
         .then(data => {
             if (data.data.insertedId) {
