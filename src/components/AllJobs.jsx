@@ -12,7 +12,7 @@ const AllJobs = () => {
     const [searched, setSearched] = useState(false);
 
     const { isPending, data:jobs } = useQuery({ queryKey: ['jobs'], queryFn: async() => {
-        const data = await axios.get('http://localhost:3000/jobs');
+        const data = await axios.get('https://job-quest-server-alpha.vercel.app/jobs');
         return data.data;
     } });
 

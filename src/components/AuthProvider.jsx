@@ -37,9 +37,9 @@ const AuthProvider = ({children}) => {
             setLoading(false);
 
             if (currentUser) {
-                axios.post('http://localhost:3000/jwt', { user: currentUser.email }, { withCredentials: true})
+                axios.post('https://job-quest-server-alpha.vercel.app/jwt', { user: currentUser.email }, { withCredentials: true})
             } else {
-                axios.post('http://localhost:3000/logout', { loggedUser }, { withCredentials: true})
+                axios.post('https://job-quest-server-alpha.vercel.app/logout', { loggedUser }, { withCredentials: true})
             }
         });
 

@@ -31,9 +31,14 @@ const NavBar = () => {
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 dark:bg-gray-700 rounded-box w-52">
                         <li><NavLink style={handleActiveNavLink} to="/">Home</NavLink></li>
                         <li><NavLink style={handleActiveNavLink} to="/all-jobs">All Jobs</NavLink></li>
-                        <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
-                        <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
-                        <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                        {
+                            user &&
+                            <>
+                                <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
+                                <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
+                                <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                            </>
+                        }
                         <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
                     </ul>
                 </div>
@@ -46,9 +51,14 @@ const NavBar = () => {
                 <ul className="menu menu-horizontal px-1 gap-1">
                     <li><NavLink style={handleActiveNavLink} to="/">Home</NavLink></li>
                     <li><NavLink style={handleActiveNavLink} to="/all-jobs">All Jobs</NavLink></li>
-                    <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
-                    <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
-                    <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                    {
+                        user &&
+                        <>
+                            <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
+                            <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
+                            <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                        </>
+                    }
                     <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
                 </ul>
             </div>

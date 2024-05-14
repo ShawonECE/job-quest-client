@@ -6,7 +6,7 @@ import {
 
 const Story = () => {
     const { isPending, data:stories } = useQuery({ queryKey: ['stories'], queryFn: async() => {
-        const data = await axios.get('http://localhost:3000/stories');
+        const data = await axios.get('https://job-quest-server-alpha.vercel.app/stories');
         return data.data;
     } })
 

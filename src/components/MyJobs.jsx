@@ -18,7 +18,7 @@ const MyJobs = () => {
     const [jobToBeUpdated, setJobToBeUpdated] = useState(null);
 
     const { isPending, data:jobs } = useQuery({ queryKey: ['my-jobs'], queryFn: async() => {
-        const data = await axios.get(`http://localhost:3000/my-jobs?email=${user.email}`, { withCredentials: true});
+        const data = await axios.get(`https://job-quest-server-alpha.vercel.app/my-jobs?email=${user.email}`, { withCredentials: true});
         return data.data;
     } });
 
@@ -64,7 +64,7 @@ const MyJobs = () => {
         })
         .then((willDelete) => {
             if (willDelete) {
-                axios.delete(`http://localhost:3000/${id}`)
+                axios.delete(`https://job-quest-server-alpha.vercel.app/${id}`)
                 .then(data => {
                     if (data.data.deletedCount === 1) {
                         swal("Poof! Data has been deleted!", {
@@ -89,7 +89,7 @@ const MyJobs = () => {
         delete newData.Salary_to;
         newData.number_of_applicants = parseInt(newData.number_of_applicants);
         
-        axios.patch(`http://localhost:3000/${jobToBeUpdated._id}`, newData)
+        axios.patch(`https://job-quest-server-alpha.vercel.app/${jobToBeUpdated._id}`, newData)
         .then(data => {
             if (data.data.modifiedCount) {
                 setModalOpen(false);

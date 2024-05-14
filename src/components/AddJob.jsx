@@ -27,7 +27,7 @@ const AddJob = () => {
         delete newData.Salary_from;
         delete newData.Salary_to;
         newData.number_of_applicants = parseInt(newData.number_of_applicants);
-        axios.post('http://localhost:3000', newData)
+        axios.post('https://job-quest-server-alpha.vercel.app', newData)
         .then(data => {
             if (data.data.insertedId) {
                 reset();

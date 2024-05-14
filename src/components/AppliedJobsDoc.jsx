@@ -14,7 +14,7 @@ const AppliedJobsDoc = () => {
     const [selectedValue, setSelectedValue] = useState('Filter');
 
     const { isPending, data:appliedJobs } = useQuery({ queryKey: ['applied-jobs'], queryFn: async() => {
-        const data = await axios.get(`http://localhost:3000/applications?email=${user.email}`, { withCredentials: true});
+        const data = await axios.get(`https://job-quest-server-alpha.vercel.app/applications?email=${user.email}`, { withCredentials: true});
         return data.data;
     } });
 

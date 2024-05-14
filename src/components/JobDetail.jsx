@@ -16,7 +16,7 @@ const JobDetail = () => {
     const { id } = useParams();
     // const job = useLoaderData().data;
     const { isPending, data:job } = useQuery({ queryKey: [`job_${id}`], queryFn: async() => {
-        const data = await axios.get(`http://localhost:3000/jobs/${id}`);
+        const data = await axios.get(`https://job-quest-server-alpha.vercel.app/jobs/${id}`);
         return data.data;
     } })
     // const {posted_by, job_title, deadline, salary_range, number_of_applicants, job_description, job_img, job_category, _id} = job;
@@ -44,7 +44,7 @@ const JobDetail = () => {
         const {job_title, posted_by, salary_range, job_category, job_id: _id} = job;
         const newData = {...data, job_title, name: user.displayName, email: user.email, posted_by, salary_range, job_category, job_id: _id};
         console.log(newData);
-        axios.post('http://localhost:3000/application', newData)
+        axios.post('https://job-quest-server-alpha.vercel.app/application', newData)
         .then(data => {
             if (data.data.insertedId) {
                 setModalOpen(false);
