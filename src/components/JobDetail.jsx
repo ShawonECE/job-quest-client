@@ -14,12 +14,10 @@ const JobDetail = () => {
     const {user} = useContext(AuthContext);
     const [modalOpen, setModalOpen] = useState(false);
     const { id } = useParams();
-    // const job = useLoaderData().data;
     const { isPending, data:job } = useQuery({ queryKey: [`job_${id}`], queryFn: async() => {
         const data = await axios.get(`https://job-quest-server-alpha.vercel.app/jobs/${id}`);
         return data.data;
     } })
-    // const {posted_by, job_title, deadline, salary_range, number_of_applicants, job_description, job_img, job_category, _id} = job;
     const applicationDeadline = moment(job?.deadline);
     const now = moment();
 
@@ -74,9 +72,9 @@ const JobDetail = () => {
                 <title>Job Details</title>
             </Helmet>
             <div className="hero-content flex-col lg:flex-row">
-                <img src={job.job_img} className="max-w-sm rounded-lg shadow-2xl" />
+                <img src={job.job_img} className="max-w-[350px] rounded-lg shadow-2xl" />
                 <div>
-                    <h1 className="text-5xl font-bold">{job.job_title} Wanted!</h1>
+                    <h1 className="text-4xl lg:text-5xl font-bold">{job.job_title} Wanted!</h1>
                     <p className="py-6">{job.job_description}</p>
                     <p>Job position: <span className="font-semibold">{job.job_title}</span></p>
                     <p>Salary range: <span className="font-semibold">{job.salary_range}</span></p>

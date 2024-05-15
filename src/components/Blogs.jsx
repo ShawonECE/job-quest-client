@@ -23,22 +23,22 @@ const Blogs = () => {
             <h2 className="text-2xl font-bold mt-10">Express.js</h2>
             <h3 className="text-xl font-semibold mt-5">What is Express.js?</h3>
             <p className="mt-2 text-justify">Express.js is a fast, unopinionated, and minimalist web framework for Node.js. It provides essential features for building web applications, APIs, and middleware. Here&apos;s a simple example of an Express route:</p>
-            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4">
+            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4 overflow-x-auto">
                 <pre>
                     <code>
                         {`
-        const express = require('express');
-        const app = express();
+    const express = require('express');
+    const app = express();
 
-        // Define a route
-        app.get('/', (req, res) => {
-        res.send('Hello, Express!');
-        });
+    // Define a route
+    app.get('/', (req, res) => {
+    res.send('Hello, Express!');
+    });
 
-        // Start the server
-        app.listen(3000, () => {
-        console.log('Server running on port 3000');
-        });
+    // Start the server
+    app.listen(3000, () => {
+    console.log('Server running on port 3000');
+    });
                         `}
                     </code>
                 </pre>
@@ -58,18 +58,18 @@ const Blogs = () => {
                 <li><p><span className="font-bold">Type Safety:</span> Built with TypeScript, providing robust type checking.</p></li>
                 <li><p><span className="font-bold">Rich Ecosystem:</span> Offers tools for REST APIs, GraphQL, real-time apps, and more.</p></li>
             </ul>
-            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4">
+            <div className="bg-[#2C3333] dark:bg-gray-900 rounded-md text-white mt-4 overflow-x-auto">
                 <pre>
                     <code>
                         {`
-        import { Injectable } from '@nestjs/common';
+    import { Injectable } from '@nestjs/common';
 
-        @Injectable()
-        export class AppService {
-          getHello(): string {
-            return 'Hello, world!';
-          }
+    @Injectable()
+    export class AppService {
+        getHello(): string {
+        return 'Hello, world!';
         }
+    }
         
                         `}
                     </code>
