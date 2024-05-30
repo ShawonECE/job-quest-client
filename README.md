@@ -1,6 +1,6 @@
 # JobQuest
 
-Live Link: https://job-quest-15948.firebaseapp.com/
+Live Link: https://job-quest1.netlify.app/
 
 ## Category
 

@@ -20,6 +20,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import Premium from './components/Premium.jsx';
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/job/:id",
         element: <Private><JobDetail /></Private>,
+      },
+      {
+        path: "/premium",
+        element: <Private><Premium /></Private>,
       },
     ]
   },

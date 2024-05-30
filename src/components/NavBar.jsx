@@ -37,6 +37,7 @@ const NavBar = () => {
                                 <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
                                 <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
                                 <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                                <li><NavLink style={handleActiveNavLink} to="/premium">Premium</NavLink></li>
                             </>
                         }
                         <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
@@ -57,6 +58,7 @@ const NavBar = () => {
                             <li><NavLink style={handleActiveNavLink} to="/applied-jobs">Applied Jobs</NavLink></li>
                             <li><NavLink style={handleActiveNavLink} to="/add-job">Add Job</NavLink></li>
                             <li><NavLink style={handleActiveNavLink} to="/my-jobs">My Jobs</NavLink></li>
+                            <li><NavLink style={handleActiveNavLink} to="/premium">Premium</NavLink></li>
                         </>
                     }
                     <li><NavLink style={handleActiveNavLink} to="/blogs">Blogs</NavLink></li>
