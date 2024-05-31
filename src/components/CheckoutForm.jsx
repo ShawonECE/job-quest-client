@@ -18,7 +18,7 @@ const CheckoutForm = ({setIsPremium}) => {
     useEffect(() => {
         axios.post('https://job-quest-server-alpha.vercel.app/create-payment-intent', { price: price })
         .then(res => {
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret);
         })
     }, [])
@@ -49,10 +49,10 @@ const CheckoutForm = ({setIsPremium}) => {
         });
   
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setError(error.message);
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            // console.log('[PaymentMethod]', paymentMethod);
             setError('');
         }
 
@@ -66,10 +66,10 @@ const CheckoutForm = ({setIsPremium}) => {
         });
 
         if (confirmError) {
-            console.log('confirmError', confirmError);
+            // console.log('confirmError', confirmError);
             setError(confirmError.message);
         } else {
-            console.log('paymentIntent', paymentIntent);
+            // console.log('paymentIntent', paymentIntent);
             setError('');
 
             if (paymentIntent.status === 'succeeded') {
